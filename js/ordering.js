@@ -10,12 +10,15 @@
 // });
 
 // Function to generate HTML content for an item
-function generateHTMLContent(itemName, itemPrice) {
+function generateHTMLContent(itemName, itemPrice, itemImageUrl) {
+    const defaultImageUrl = 'images/butted-shrimp.jpg';
+    const imageUrl = itemImageUrl || defaultImageUrl;
+
     return `
         <td class="table-item ps-4 pe-4">
             <div class="row">
                 <div class="col-12">
-                    <img class="menu-item" src="images/butted-shrimp.jpg" alt="Food Image" height="100%" width="100%"> 
+                    <img class="menu-item" src="${imageUrl}" alt="Food Image" height="100%" width="100%"> 
                 </div>
             </div>
             <div class="row pt-2">
@@ -70,8 +73,9 @@ function filterItems(category) {
                         const itemData = itemDoc.data();
                         const itemName = itemData.dish;
                         const itemPrice = itemData.price;
+                        const itemImageUrl = itemData.imageUrl;
                         // Construct HTML content for the item
-                        htmlContent = generateHTMLContent(itemName, itemPrice);
+                        htmlContent = generateHTMLContent(itemName, itemPrice, itemImageUrl);
                         counter++; // Increment counter
                         // Append the HTML content to the target element based on the counter value
                         const targetId = counter % 2 === 0 ? "append-2" : "append-1";
@@ -104,8 +108,9 @@ function filterItems(category) {
                             const itemData = itemDoc.data();
                             const itemName = itemData.dish;
                             const itemPrice = itemData.price;
+                            const itemImageUrl = itemData.imageUrl;
                             // Construct HTML content for the item
-                            htmlContent = generateHTMLContent(itemName, itemPrice);
+                            htmlContent = generateHTMLContent(itemName, itemPrice, itemImageUrl);
                             counter++; // Increment counter
                             console.log(counter);
                             // Append the HTML content to the target element based on the counter value
